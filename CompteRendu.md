@@ -38,7 +38,7 @@ après la commande: ```dpkg -l | wc -l``` je possède 353 paquets
 |nom machine|```hostname```|server1| Retourne le nom de Host du DNS |
 |domaine|```domainname```| (none) | Retourne le nom de domaine de la machine |
 |verification emplacement depots| ```cat /etc/apt/sources.list \| grep -v -E ’^#\|^$’``` | http://deb.debian.org/debian/ bookworm main | Retourne l'origine et le type d'installer utiliser |
-|passwd/shadow|```cat /etc/shadow \| grep -vE ’:\*:\|:!\*:’```| root:\$y\$j9T\$6ImByg2ixv8uFsGJw2hBP/\$JHtTxY0iS2ltRYnOzJUOIK5TKBxif/Ca3EOwLQjYNA3:19632:0:99999:7:::<br>messagebus:!:19632::::::<br>avahi-autoipd:!:19632::::::<br>sshd:!:19636:::::: | Retourne la liste des utilisateurs avec: nom, mdp hasher, quand le mdp à été changer pour la dernière fois, le nombre de jour minimum et maximum de validité du mdp, le nombre de jour ou l'utilisateur sera prévenue de l'expiration du mdp |
+|passwd/shadow|```cat /etc/shadow \| grep -vE ’:\*:\|:!\*:’```| root:\$y\$j9T\$6ImByg2ixv8uFsGJw2hBP/\$JHtTxY0iS2ltRY<br>nOzJUOIK5TKBxif/Ca3EOwLQjYNA3:19632:0:99999:7:::<br><br>messagebus:!:19632::::::<br>avahi-autoipd:!:19632::::::<br>sshd:!:19636:::::: | Retourne la liste des utilisateurs avec: nom, mdp hasher, quand le mdp à été changer pour la dernière fois, le nombre de jour minimum et maximum de validité du mdp, le nombre de jour ou l'utilisateur sera prévenue de l'expiration du mdp |
 |compte utilisateurs|```cat /etc/passwd \| grep -vE ’nologin\|sync’```| root:x:0:0:root:/root:/bin/bash | Retourne la liste des utilisateurs avec: nom, mdp (masquer), uid, gid |
 
 ---
