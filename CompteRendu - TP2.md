@@ -107,9 +107,20 @@ Donc environ 1.671 ont été créer depuis le démarrage de la machine
 > ```
 
 #### Reprendre la question précédente avec la commande ```pstree```.
-TODO: redémarrer la machine physique pour qu'elle puisse se connecter à internet et installé ```pstree```
 > ```
-> 
+> # pstree
+>systemd─┬─anacron
+>        ├─cron
+>        ├─dbus-daemon
+>        ├─dhclient
+>        ├─login───bash
+>        ├─sshd───sshd───bash───pstree
+>        ├─systemd───(sd-pam)
+>        ├─systemd-journal
+>        ├─systemd-logind
+>        ├─systemd-timesyn───{systemd-timesyn}
+>        ├─systemd-udevd
+>        └─wpa_supplicant
 > ```
 
 #### Essayez la commande top
@@ -123,11 +134,12 @@ La touche ? permet d’afficher un résumé de l’aide de top. Afficher dans to
 > ```
 
 - Trouvez les commandes interactives permettant de : passer l’affichage en couleur, mettre en avant le colonne de trie, changer la colonne de trie.
-> On change la couleur avec ```shift+z```, on met la colone de trie en évidence avec ```x``` et on change la column de trie avec ```<``` ou ```shift+<``` (```>```)
+> On change la couleur avec ```z```, on met la colone de trie en évidence avec ```x``` et on change la column de trie avec ```<``` ou ```shift+<``` (```>```)
 
 - Essayez la commande htop. Expliquez les avantages et/ou inconvénients à son utilisation par rapport à top.
->
-TODO: redémarrer la machine physique pour qu'elle puisse se connecter à internet et installé ```htop```
+> L'interface de ```htop``` est beau coup plus claire, tout est déjà coouleur codé et indique même les pourcentages d'utilisation total du CPU, de la Memoire et de la Swap. Il indique également le temps d'activité de la machine, le nombre de processus. De plus il est facile d'interragire avec les processus (grâce aux boutton F2 à F9).
+> ```htop``` est plus simple d'utilisation que ```top``` à 0.3%.
+> Comme désaventage je constate que ```htop``` semble très gourmand en resources puisque régulièreement est le premier processus consomateur du CPU à 0.7% ce qui est plus que lors de la commande ```top```
 
 ## Arrêt d'un processus
 
@@ -163,19 +175,18 @@ Quelle est la différence entre tee et cat ?
 ## Journal système rsyslog
 
 - Le service rsyslog est-il lancé sur votre système ? Quel est le PID du démon ?
-> Non
+> Non. Je l'ai installer avec ```apt install rsyslog```
 
-- Le principal fichier de configuration de rsyslog est ```/etc/rsyslog.conf```. Dans quel fichier
-rsyslog écrit-il les messages issus des services standards ? Et la plupart des autres messages ?
+- Le principal fichier de configuration de rsyslog est ```/etc/rsyslog.conf```. Dans quel fichier rsyslog écrit-il les messages issus des services standards ? Et la plupart des autres messages ?
 Vérifier le contenu de ces fichiers.
-> Ø
+> rsyslog écrit les messages dans le fichier **/var/log/syslog** et la pluspars des autres messages chaqu'un dans leurs propres fichier .log
 
 - A quoi sert le service cron ?
 >Cron ou Crontab est un service permettant de lancer des application de manière régulière
 
 - Que fait la commande ```tail -f``` ? A l’aide de cette commande, placer en bas de votre écran un fenêtre qui permette de visualiser en “temps réel” le contenu du fichier ```/var/log/messages```. 
 Que voyez-vous si vous redémarrez le service cron depuis un autre shell ?
-> ```tail -f``` permet d'afficher les nouvelles données ajouter dans un fichier. La suite de la question n'est pas possible car le fichier n'existe pas
+> ```tail -f``` permet d'afficher les nouvelles données ajouter dans un fichier. La suite de la question n'est pas possible car le fichier n'existe pas, même après l'installation de **rsyslog**
 
 - Expliquer à quoi sert le fichier ```/etc/logrotate.conf```.
 > c'est un fichier permettant de parametrer la création des fichier logs.
